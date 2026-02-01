@@ -1,0 +1,14 @@
+version: '3'
+services:
+  homebox:
+    image: ghcr.io/sysadminsmedia/homebox:latest
+    container_name: homebox
+    restart: unless-stopped
+    ports:
+      - "3100:7745"
+    volumes:
+      - P:/home/inventory/data:/data
+networks:
+  default:
+    name: proxion-network
+    external: true

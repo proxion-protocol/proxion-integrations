@@ -1,0 +1,15 @@
+version: '3'
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./config:/config
+      - ./books:/books # Local entry point, will be overridden by FUSE
+    ports:
+      - 8083:8083
+    restart: unless-stopped

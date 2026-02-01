@@ -1,0 +1,14 @@
+version: '3'
+services:
+  kiwix:
+    image: kiwix/kiwix-serve:latest
+    container_name: kiwix
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    volumes:
+      - P:/knowledge/kiwix/data:/data
+networks:
+  default:
+    name: proxion-network
+    external: true

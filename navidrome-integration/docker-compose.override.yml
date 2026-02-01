@@ -1,0 +1,5 @@
+# Navidrome Proxion Binding
+services:
+  navidrome:
+    volumes:
+      - P:/media/navidrome/:/music:ro # Proxion Drive P:/media/navidrome for music

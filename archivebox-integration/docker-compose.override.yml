@@ -1,0 +1,5 @@
+# ArchiveBox Proxion Binding
+services:
+  archivebox:
+    volumes:
+      - P:/web/archive/:/data # Proxion Drive P:/web/archive for the entire web archive

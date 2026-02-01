@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mealie:
+    image: hkotel/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+      - "9925:9000"
+    volumes:
+      - P:/home/mealie/data:/app/data
+    environment:
+      - ALLOW_REGISTRATION=true
+networks:
+  default:
+    name: proxion-network
+    external: true

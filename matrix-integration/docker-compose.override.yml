@@ -1,0 +1,5 @@
+# Matrix Proxion Binding
+services:
+  synapse:
+    volumes:
+      - P:/social/matrix/:/data # Proxion Drive P:/social/matrix for Synapse data (media/db)

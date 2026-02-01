@@ -1,0 +1,5 @@
+# FreshRSS Proxion Binding
+services:
+  freshrss:
+    volumes:
+      - P:/web/freshrss/:/var/www/FreshRSS/data # Proxion Drive P:/web/freshrss for data

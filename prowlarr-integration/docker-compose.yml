@@ -1,0 +1,18 @@
+version: '3'
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    volumes:
+      - P:/media/indexers/config:/config
+    ports:
+      - "9696:9696"
+networks:
+  default:
+    name: proxion-network
+    external: true

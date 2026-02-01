@@ -1,0 +1,12 @@
+version: '3'
+services:
+  cyberchef:
+    image: mpepping/cyberchef:latest
+    container_name: cyberchef
+    restart: unless-stopped
+    ports:
+      - "8086:8000"
+networks:
+  default:
+    name: proxion-network
+    external: true

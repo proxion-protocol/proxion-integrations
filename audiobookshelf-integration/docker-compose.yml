@@ -1,0 +1,17 @@
+version: '3'
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    restart: unless-stopped
+    ports:
+      - "13378:80"
+    volumes:
+      - P:/media/audiobooks/library:/audiobooks
+      - P:/media/audiobooks/podcasts:/podcasts
+      - P:/media/audiobooks/config:/config
+      - P:/media/audiobooks/metadata:/metadata
+networks:
+  default:
+    name: proxion-network
+    external: true

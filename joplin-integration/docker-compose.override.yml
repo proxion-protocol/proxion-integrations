@@ -1,0 +1,7 @@
+# Joplin Integration with Proxion FUSE
+# This file mounts the Solid Pod (via proxion-fuse) into the Joplin container.
+
+services:
+  app:
+    volumes:
+      - P:/knowledge/joplin/:/usr/src/app/storage # FUSE Drive P:/knowledge/joplin

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  monica:
+    image: monica:latest
+    container_name: monica
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    environment:
+      - APP_KEY=proxion-secret-key-32-chars-longg
+      - DB_HOST=monica-db
+    volumes:
+      - P:/social/monica/storage:/var/www/html/storage
+    depends_on:
+      - monica-db
+  monica-db:
+    image: mysql:5.7
+    container_name: monica-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=monica
+      - MYSQL_USER=monica
+      - MYSQL_PASSWORD=monica
+    volumes:
+      - P:/social/monica/db:/var/lib/mysql
+networks:
+  default:
+    name: proxion-network
+    external: true

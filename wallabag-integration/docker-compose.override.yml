@@ -1,0 +1,5 @@
+# Wallabag Integration with Proxion FUSE
+services:
+  wallabag:
+    volumes:
+      - P:/web/wallabag/:/var/www/wallabag/data # FUSE Drive P:/web/wallabag

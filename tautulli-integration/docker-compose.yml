@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli:latest
+    container_name: tautulli
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+    volumes:
+      - P:/media/plex-stats:/config
+    ports:
+      - "8181:8181"
+networks:
+  default:
+    name: proxion-network
+    external: true

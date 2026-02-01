@@ -1,0 +1,16 @@
+version: '3'
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+    volumes:
+      - P:/:/srv
+      - P:/system/explorer/database.db:/database.db
+      - P:/system/explorer/settings.json:/config/settings.json
+networks:
+  default:
+    name: proxion-network
+    external: true

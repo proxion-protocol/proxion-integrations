@@ -1,0 +1,5 @@
+# Changedetection.io Proxion Binding
+services:
+  changedetection:
+    volumes:
+      - P:/web/monitor/:/datastore # Proxion Drive P:/web/monitor for watch data and logs

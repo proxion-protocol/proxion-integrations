@@ -1,0 +1,7 @@
+# Home Assistant Integration with Proxion FUSE
+# This file mounts the Solid Pod (via proxion-fuse) into the Home Assistant container.
+
+services:
+  homeassistant:
+    volumes:
+      - P:/iot/ha/:/config # FUSE Drive P:/iot/ha

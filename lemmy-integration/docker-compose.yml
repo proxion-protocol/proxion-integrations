@@ -1,0 +1,28 @@
+version: '3'
+services:
+  lemmy:
+    image: dessalines/lemmy:latest
+    container_name: lemmy
+    restart: unless-stopped
+    ports:
+      - "8094:8080"
+    environment:
+      - LEMMY_DATABASE_URL=postgres://lemmy:lemmy@lemmy-db:5432/lemmy
+    volumes:
+      - P:/social/lemmy/config:/config
+    depends_on:
+      - lemmy-db
+  lemmy-db:
+    image: postgres:15-alpine
+    container_name: lemmy-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=lemmy
+      - POSTGRES_PASSWORD=lemmy
+      - POSTGRES_DB=lemmy
+    volumes:
+      - P:/social/lemmy/db:/var/lib/postgresql/data
+networks:
+  default:
+    name: proxion-network
+    external: true

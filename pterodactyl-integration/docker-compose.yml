@@ -1,0 +1,19 @@
+version: '3'
+services:
+  pterodactyl:
+    image: ghcr.io/pterodactyl/panel:latest
+    container_name: pterodactyl
+    restart: unless-stopped
+    ports:
+      - "8093:80"
+      - "8445:443"
+    environment:
+      - APP_KEY=proxion-secret-pteroo
+      - DB_PASSWORD=pterodactyl
+    volumes:
+      - P:/gaming/servers/panel:/app/var
+      - P:/gaming/servers/logs:/app/storage/logs
+networks:
+  default:
+    name: proxion-network
+    external: true

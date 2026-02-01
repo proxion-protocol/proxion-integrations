@@ -1,0 +1,6 @@
+# AdGuard Home Proxion Binding
+services:
+  adguardhome:
+    volumes:
+      - P:/network/adguard/work:/opt/adguardhome/work # Proxion Drive P:/network/adguard for work data
+      - P:/network/adguard/conf:/opt/adguardhome/conf # Proxion Drive P:/network/adguard for configuration

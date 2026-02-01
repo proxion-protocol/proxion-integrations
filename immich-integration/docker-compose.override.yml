@@ -1,0 +1,15 @@
+# Immich Integration with Proxion FUSE
+# This file mounts the Solid Pod (via proxion-fuse) into the Immich container.
+
+services:
+  immich-server:
+    volumes:
+      - P:/media/immich/:/usr/src/app/upload # FUSE Drive P:/media/immich
+    environment:
+      UPLOAD_LOCATION: /usr/src/app/upload
+      EXTERNAL_PATH: /usr/src/app/upload
+
+  # Optional: For machine learning to process Pod photos
+  immich-machine-learning:
+    volumes:
+      - /mnt/pod-photos:/usr/src/app/upload:ro

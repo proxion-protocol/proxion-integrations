@@ -1,0 +1,17 @@
+version: '3'
+services:
+  dashdot:
+    image: mauricenino/dashdot:latest
+    container_name: dashdot
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - /:/mnt/host:ro
+    environment:
+      - DASHDOT_ENABLE_HOST_NETWORK=false
+      - DASHDOT_PORT=3001
+networks:
+  default:
+    name: proxion-network
+    external: true

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+    volumes:
+      - P:/media/requests-jellyfin/config:/app/config
+    ports:
+      - "5056:5055"
+networks:
+  default:
+    name: proxion-network
+    external: true

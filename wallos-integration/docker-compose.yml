@@ -1,0 +1,15 @@
+version: '3'
+services:
+  wallos:
+    image: wallos/wallos:latest
+    container_name: wallos
+    restart: unless-stopped
+    ports:
+      - "8089:80"
+    volumes:
+      - P:/finance/subscriptions/db:/var/www/html/db
+      - P:/finance/subscriptions/logos:/var/www/html/logos
+networks:
+  default:
+    name: proxion-network
+    external: true

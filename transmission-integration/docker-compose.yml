@@ -1,0 +1,22 @@
+version: '3'
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    volumes:
+      - P:/downloads/transmission-config:/config
+      - P:/downloads/data:/downloads
+      - P:/downloads/watch:/watch
+    ports:
+      - "9091:9091"
+      - "51413:51413"
+      - "51413:51413/udp"
+networks:
+  default:
+    name: proxion-network
+    external: true

@@ -1,0 +1,5 @@
+# Calibre-Web Proxion Binding
+services:
+  calibre-web:
+    volumes:
+      - P:/knowledge/calibre/:/books # Proxion Drive P:/knowledge/calibre for e-books

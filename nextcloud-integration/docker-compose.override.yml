@@ -1,0 +1,5 @@
+# Nextcloud Proxion Binding
+services:
+  nextcloud:
+    volumes:
+      - P:/cloud/nextcloud/:/var/www/html/data # Proxion Drive P:/cloud/nextcloud for Nextcloud user data

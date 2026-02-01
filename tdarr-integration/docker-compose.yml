@@ -1,0 +1,28 @@
+version: '3'
+services:
+  tdarr:
+    container_name: tdarr
+    image: haveagitgat/tdarr:latest
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+      - PUID=1000
+      - PGID=1000
+      - serverIP=tdarr
+      - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+    volumes:
+      - P:/media/tdarr-config/server:/app/server
+      - P:/media/tdarr-config/configs:/app/configs
+      - P:/media/tdarr-config/logs:/app/logs
+      - P:/media/movies:/media/movies
+      - P:/media/tv:/media/tv
+      - P:/media/tdarr-cache:/temp
+    ports:
+      - "8265:8265"
+      - "8266:8266"
+networks:
+  default:
+    name: proxion-network
+    external: true

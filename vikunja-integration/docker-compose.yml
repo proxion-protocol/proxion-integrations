@@ -1,0 +1,17 @@
+version: '3'
+services:
+  vikunja:
+    image: vikunja/vikunja:latest
+    container_name: vikunja
+    restart: unless-stopped
+    ports:
+      - "3456:3456"
+    volumes:
+      - P:/office/tasks/files:/app/vikunja/files
+      - P:/office/tasks/db:/app/vikunja/db
+    environment:
+      - VIKUNJA_SERVICE_JWTSECRET=proxion-secret
+networks:
+  default:
+    name: proxion-network
+    external: true

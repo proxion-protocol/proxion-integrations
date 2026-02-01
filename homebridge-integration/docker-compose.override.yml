@@ -1,0 +1,5 @@
+# Homebridge Proxion Binding
+services:
+  homebridge:
+    volumes:
+      - P:/iot/homebridge/:/homebridge # Proxion Drive P:/iot/homebridge for config and plugins

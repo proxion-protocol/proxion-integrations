@@ -1,0 +1,18 @@
+version: '3'
+services:
+  kopia:
+    image: kopia/kopia:latest
+    container_name: kopia
+    restart: unless-stopped
+    ports:
+      - "51515:51515"
+    volumes:
+      - P:/:/srv/proxion-drive:ro
+      - P:/system/backups/config:/app/config
+      - P:/system/backups/cache:/app/cache
+      - P:/system/backups/logs:/app/logs
+    command: server start --insecure --address 0.0.0.0:51515 --override-hostname proxion-primary
+networks:
+  default:
+    name: proxion-network
+    external: true

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  searxng:
+    container_name: searxng
+    image: searxng/searxng:latest
+    restart: unless-stopped
+    ports:
+      - "8083:8080"
+    volumes:
+      - P:/web/search/config:/etc/searxng
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8083
+networks:
+  default:
+    name: proxion-network
+    external: true

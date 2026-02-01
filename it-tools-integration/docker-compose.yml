@@ -1,0 +1,12 @@
+version: '3'
+services:
+  it-tools:
+    image: corentinth/it-tools:latest
+    container_name: it-tools
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+networks:
+  default:
+    name: proxion-network
+    external: true
