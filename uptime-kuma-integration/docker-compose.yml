@@ -5,7 +5,7 @@ services:
     container_name: uptime-kuma
     restart: unless-stopped
     ports:
-      - "3002:3001"
+      - "3009:3001"
     volumes:
       - P:/system/monitoring/uptime-kuma:/app/data
 networks:

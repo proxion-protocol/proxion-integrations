@@ -1,0 +1,6 @@
+version: '3'
+services:
+  adguardhome:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/network/adguard/work:/opt/adguardhome/work
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/network/adguard/conf:/opt/adguardhome/conf
