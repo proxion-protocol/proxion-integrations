@@ -438,3 +438,7 @@ WHERE (books.id NOT IN (SELECT 1 FROM (SELECT 1) WHERE 1!=1)) ORDER BY random()
 [2026-02-03 04:15:00,499]  INFO {base.py:728} Removed job fbadef9c5c734b4e84be304772ec3992
 [2026-02-03 04:15:00,501]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-03 04:15:00 UTC], next run at: 2026-02-03 04:15:00 UTC)" executed successfully
 [2026-02-03 04:15:01,485]  INFO {server.py:218} Starting Gevent server on [::]:8083
+[2026-02-03 06:09:40,583]  WARN {web.py:1448} Login failed for user "admin" IP-address: ::ffff:172.31.0.1
+[2026-02-03 08:26:44,795]  WARN {web.py:1448} Login failed for user "admin" IP-address: ::ffff:172.31.0.1
+[2026-02-03 08:26:50,214]  WARN {web.py:1448} Login failed for user "admin" IP-address: ::ffff:172.31.0.1
+[2026-02-03 08:27:40,045]  WARN {web.py:1448} Login failed for user "admin" IP-address: ::ffff:172.31.0.1
