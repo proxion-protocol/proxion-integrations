@@ -1,0 +1,10 @@
+{
+    "id": "authentik-integration",
+    "name": "Authentik Identity",
+    "description": "The Sovereign Gatekeeper. Single Sign-On for your homelab.",
+    "category": "security",
+    "port": 9000,
+    "serviceToken": null,
+    "icon": "https://goauthentik.io/img/icon_top_brand_colour.svg",
+    "version": "2024.2.1"
+}

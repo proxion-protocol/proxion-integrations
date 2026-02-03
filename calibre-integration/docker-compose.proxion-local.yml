@@ -1,0 +1,5 @@
+version: '3'
+services:
+  calibre-web:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/knowledge/calibre/:/books

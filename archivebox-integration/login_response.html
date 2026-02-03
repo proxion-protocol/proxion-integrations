@@ -1,0 +1,337 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us" >
+    <head>
+        <title>Log in | Index | ArchiveBox</title>
+        
+        
+            <meta name="robots" content="NONE,NOARCHIVE">
+        
+        
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+        
+        <style>
+            #upgrade-banner {
+                position: fixed;
+                right: 20px;
+                bottom: 20px;
+                background-color: #f8f8f8;
+                color: #333333;
+                border: 2px solid #772948;
+                padding: 10px 20px;
+                z-index: 1000;
+                text-align: center;
+            }
+            #dismiss-btn {
+                background: #aa1e55;
+                color: white;
+                cursor: pointer;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css">
+
+
+        
+        
+        
+        
+            <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+            
+        
+        
+        <link rel="stylesheet" type="text/css" href="/static/admin.css">
+        
+        <script>
+            function selectSnapshotListView(e) {
+                e && e.stopPropagation()
+                e && e.preventDefault()
+                console.log('Switching to Snapshot list view...')
+                localStorage.setItem('preferred_snapshot_view_mode', 'list')
+                window.location = "/admin/core/snapshot/" + document.location.search
+                return false
+            }
+            function selectSnapshotGridView(e) {
+                e && e.stopPropagation()
+                e && e.preventDefault()
+                console.log('Switching to Snapshot grid view...')
+                localStorage.setItem('preferred_snapshot_view_mode', 'grid')
+                window.location = "/admin/core/snapshot/grid/" + document.location.search
+                return false
+            }
+
+            const preferred_view = localStorage.getItem('preferred_snapshot_view_mode') || 'unset'
+            const current_view = (
+                window.location.pathname === "/admin/core/snapshot/"
+                    ? 'list'
+                    : 'grid')
+            console.log('Preferred snapshot view is:', preferred_view, 'Current view mode is:', current_view)
+            
+            if (preferred_view === 'grid' && current_view !== 'grid') {  
+                selectSnapshotGridView()
+            }
+        </script>
+
+        
+    </head>
+
+
+    <body class=" login" data-admin-utc-offset="0">
+        <style>
+  /* Loading Progress Bar */
+    #progress {
+        position: absolute;
+        z-index: 1000;
+        top: 0px;
+        left: -6px;
+        width: 2%;
+        opacity: 1;
+        height: 2px;
+        background: #1a1a1a;
+        border-radius: 1px;
+        transition: width 4s ease-out, opacity 400ms linear;
+    }
+
+    @-moz-keyframes bugfix { from { padding-right: 1px ; } to { padding-right: 0; } }
+</style>
+<script>
+    // Page Loading Bar
+    window.loadStart = function(distance) {
+        var distance = distance || 0;
+        // only add progrstess bar if not already present
+        if (django.jQuery("#loading-bar").length == 0) {
+            django.jQuery("body").add("<div id=\"loading-bar\"></div>");
+        }
+        if (django.jQuery("#progress").length === 0) {
+            django.jQuery("body").append(django.jQuery("<div></div>").attr("id", "progress"));
+            let last_distance = (distance || (30 + (Math.random() * 30)))
+            django.jQuery("#progress").width(last_distance + "%");
+            setInterval(function() {
+                last_distance += Math.random()
+                django.jQuery("#progress").width(last_distance + "%");
+            }, 1000)
+        }
+    };
+
+    window.loadFinish = function() {
+        django.jQuery("#progress").width("101%").delay(200).fadeOut(400, function() {
+            django.jQuery(this).remove();
+        });
+    };
+    window.loadStart();
+    window.addEventListener('beforeunload', function() {window.loadStart(27)});
+    document.addEventListener('DOMContentLoaded', function() {window.loadFinish()});
+</script>
+
+
+        <div id="container">
+            
+                <div id="header">
+                    <div id="branding">
+                        <h1 id="site-name">
+                            <a href="/">
+                                <img src="/static/archive.png" id="logo">
+                                ArchiveBox
+                            </a>
+                        </h1>
+                    </div>
+                    
+<br/>
+  <a href="/">Back to Main Index</a>
+
+                    
+                </div>
+
+                
+            
+
+            
+                
+            
+
+            <div id="content" class="colM">
+                
+                
+                
+  <center>
+    Log in to add, edit, and remove links from your archive.
+  </center><br/><br/>
+  <img src="/static/archive.png" style="width: 80px; display: block; margin: auto"/><br/>
+
+                
+
+
+
+
+<p class="errornote">
+    Please enter the correct username and password for a staff account. Note that both fields may be case-sensitive.
+</p>
+
+
+
+<div id="content-main">
+
+
+
+<br/>
+<form action="/admin/login/" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="LTFtzNPk2llp9m110s8bKkez12twKA2oXPWf53HrxFJYFbO5TXkAC2Vugxoy7h5Z">
+  <div class="form-row">
+    
+    <label class="required" for="id_username">Username:</label> <input type="text" name="username" value="admin" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+  </div>
+  <div class="form-row">
+    
+    <label class="required" for="id_password">Password:</label> <input type="password" name="password" autocomplete="current-password" required id="id_password">
+    <input type="hidden" name="next" value="/admin/">
+  </div>
+  
+  
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="Log in">
+  </div>
+</form>
+
+<center>
+  <br/><br/>
+  <hr/>
+  <br/>
+  If you forgot your password, <a href="/accounts/password_reset/">reset it here</a> or run:<br/>
+<pre>
+archivebox manage changepassword USERNAME
+</pre>
+
+  <br/><br/>
+  <hr/>
+  <br/>
+  To create a new admin user, run the following:
+<pre>
+archivebox manage createsuperuser
+</pre>
+  <br/>
+  <hr/>
+
+  <small><i>(cd into your archive folder before running commands)</i></small>
+</center>
+
+
+</div>
+
+                
+                <br class="clear">
+            </div>
+
+            <div id="footer"></div>
+        </div>
+
+        
+        
+        <script>
+            $ = django.jQuery;
+            $.fn.reverse = [].reverse;
+
+            // hide images that fail to load
+            document.querySelector('body').addEventListener('error', function (e) {
+                e.target.style.opacity = 0;
+            }, true)
+
+            // setup timezone
+            
+            window.TIME_ZONE = 'UTC'
+
+            window.setCookie = function(name, value, days) {
+                let expires = ""
+                if (days) {
+                    const date = new Date()
+                    date.setTime(date.getTime() + (days*24*60*60*1000))
+                    expires = "; expires=" + date.toUTCString()
+                }
+                document.cookie = name + "=" + (value || "")  + expires + "; path=/"
+            }
+
+            function setTimeOffset() {
+                if (window.GMT_OFFSET) return
+                window.GMT_OFFSET = -(new Date).getTimezoneOffset()
+                window.setCookie('GMT_OFFSET', window.GMT_OFFSET, 365)
+            }
+
+            // change the admin actions button from a dropdown to buttons across
+            function fix_actions() {
+                const container = $('div.actions')
+
+                // too many actions to turn into buttons
+                if (container.find('select[name=action] option').length >= 11) return
+
+                // hide the empty default option thats just a placeholder with no value
+                container.find('label:nth-child(1), button[value=0]').hide()
+
+                const buttons = $('<div></div>')
+                    .insertAfter('div.actions button[type=submit]')
+                    .css('display', 'inline')
+                    .addClass('class', 'action-buttons');
+
+                // for each action in the dropdown, turn it into a button instead
+                container.find('select[name=action] option:gt(0)').each(function () {
+                    const action_type = this.value
+                    $('<button>')
+                        .attr('type', 'button')
+                        .attr('name', action_type)
+                        .addClass('button')
+                        .text(this.text)
+                        .click(function (e) {
+                            e.preventDefault()
+                            e.stopPropagation()
+
+                            const num_selected = document.querySelector('.action-counter').innerText.split(' ')[0]
+
+                            if (action_type === 'overwrite_snapshots') {
+                                const message = (
+                                    'Are you sure you want to re-archive (overwrite) ' + num_selected + ' Snapshots?\n\n' +
+                                    'This will delete all previously saved files from these Snapshots and re-archive them from scratch.\n\n'
+                                )
+                                if (!window.confirm(message)) return false
+                            }
+                            if (action_type === 'delete_snapshots') {
+                                const message = (
+                                    'Are you sure you want to permanently delete ' + num_selected + ' Snapshots?\n\n' +
+                                    'They will be removed from your index, and all their Snapshot content on disk will be permanently deleted.'
+                                )
+                                if (!window.confirm(message)) return false
+                            }
+
+                            // select the action button from the dropdown
+                            container.find('select[name=action]')
+                                .find('[selected]').removeAttr('selected').end()
+                                .find('[value=' + action_type + ']').attr('selected', 'selected').click()
+                            
+                            // click submit & replace the archivebox logo with a spinner
+                            $('#changelist-form button[name="index"]').click()
+                            document.querySelector('#logo').outerHTML = '<div class="loader"></div>'
+                            return false
+                        })
+                        .appendTo(buttons)
+                })
+                console.log('Converted', buttons.children().length, 'admin actions from dropdown to buttons')
+            }
+            
+            function setupSnapshotGridListToggle() {
+                $("#snapshot-view-list").click(selectSnapshotListView)
+                $("#snapshot-view-grid").click(selectSnapshotGridView)
+
+                $('#changelist-form .card input:checkbox').change(function() {
+                    if ($(this).is(':checked'))
+                        $(this).parents('.card').addClass('selected-card')
+                    else 
+                        $(this).parents('.card').removeClass('selected-card')
+                })
+            };
+            $(document).ready(function() {
+                fix_actions()
+                setupSnapshotGridListToggle()
+                setTimeOffset()
+            })
+        </script>
+    </body>
+</html>

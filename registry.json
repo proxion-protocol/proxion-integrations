@@ -1,0 +1,181 @@
+{
+    "apps": {
+        "mastodon": {
+            "path": "social/mastodon"
+        },
+        "immich": {
+            "path": "media/immich"
+        },
+        "archivebox": {
+            "path": "web/archive"
+        },
+        "changedetection": {
+            "path": "web/monitor"
+        },
+        "adguard": {
+            "path": "network/adguard"
+        },
+        "adguard-integration": {
+            "path": "network/adguard"
+        },
+        "ghost": {
+            "path": "web/ghost"
+        },
+        "homarr": {
+            "path": "system/dashboard"
+        },
+        "dashdot": {
+            "path": "system/stats"
+        },
+        "overseerr": {
+            "path": "media/requests"
+        },
+        "tautulli": {
+            "path": "media/plex-stats"
+        },
+        "transmission": {
+            "path": "system/downloads"
+        },
+        "sonarr": {
+            "path": "media/tv"
+        },
+        "radarr": {
+            "path": "media/movies"
+        },
+        "lidarr": {
+            "path": "media/music"
+        },
+        "prowlarr": {
+            "path": "media/indexers"
+        },
+        "bazarr": {
+            "path": "media/subtitles"
+        },
+        "jellyseerr": {
+            "path": "media/requests-jellyfin"
+        },
+        "audiobookshelf": {
+            "path": "media/audiobooks"
+        },
+        "vikunja": {
+            "path": "office/tasks"
+        },
+        "stirling-pdf": {
+            "path": "office/pdf-tools"
+        },
+        "mealie": {
+            "path": "home/mealie"
+        },
+        "silverbullet": {
+            "path": "knowledge/silverbullet"
+        },
+        "kiwix": {
+            "path": "knowledge/kiwix"
+        },
+        "pairdrop": {
+            "path": "system/transfer"
+        },
+        "readarr": {
+            "path": "media/books"
+        },
+        "tdarr": {
+            "path": "media/tdarr-config"
+        },
+        "kavita": {
+            "path": "media/comics"
+        },
+        "searxng": {
+            "path": "web/search"
+        },
+        "mattermost": {
+            "path": "social/mattermost"
+        },
+        "kasm": {
+            "path": "system/workspaces"
+        },
+        "it-tools": {
+            "path": "system/tools"
+        },
+        "cyberchef": {
+            "path": "system/cyberchef"
+        },
+        "jitsi": {
+            "path": "social/jitsi"
+        },
+        "monica": {
+            "path": "social/monica"
+        },
+        "ghostfolio": {
+            "path": "finance/investments"
+        },
+        "wallos": {
+            "path": "finance/subscriptions"
+        },
+        "homebox": {
+            "path": "home/inventory"
+        },
+        "netdata": {
+            "path": "system/netdata"
+        },
+        "speedtest-tracker": {
+            "path": "network/speedtest"
+        },
+        "portainer": {
+            "path": "system/docker-management"
+        },
+        "authelia": {
+            "path": "security/authelia"
+        },
+        "watchtower": {
+            "path": "system/watchtower"
+        },
+        "syncthing": {
+            "path": "system/syncthing"
+        },
+        "filebrowser": {
+            "path": "system/explorer"
+        },
+        "linkwarden": {
+            "path": "web/bookmarks"
+        },
+        "actual": {
+            "path": "finance/budget"
+        },
+        "kopia": {
+            "path": "system/backups"
+        },
+        "steam-headless": {
+            "path": "gaming/steam"
+        },
+        "romm": {
+            "path": "gaming/roms"
+        },
+        "emulatorjs": {
+            "path": "gaming/emulators"
+        },
+        "pterodactyl": {
+            "path": "gaming/servers"
+        },
+        "homeassistant": {
+            "path": "home/automation"
+        },
+        "lemmy": {
+            "path": "social/lemmy"
+        },
+        "pixelfed": {
+            "path": "social/pixelfed"
+        },
+        "firefox": {
+            "path": "web/browser"
+        },
+        "bluesky-pds": {
+            "path": "web/atproto"
+        },
+        "pialert": {
+            "path": "security/pialert"
+        },
+        "uptime-kuma": {
+            "path": "system/monitoring"
+        }
+    }
+}

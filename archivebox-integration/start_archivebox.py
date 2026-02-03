@@ -1,67 +1,161 @@
-import os
-import sys
-import time
+#!/usr/bin/env python3
+"""
+ArchiveBox Auto-Configuration Script
+Automatically creates admin user on first install (non-interactive)
+Uses deterministic password derived from master identity key (same as AdGuard)
+"""
 import subprocess
+import time
+import sys
+import os
+import tempfile
 
-# Drive C: for ArchiveBox Data
-MOUNT_POINT = "P:" 
-POD_PATH = "/stash/" 
+# Add parent directory to path to import proxion_keyring modules
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../proxion-keyring')))
 
+from proxion_keyring.identity import load_or_create_identity_key, derive_app_password
 
-def is_mounted(drive):
-    return os.path.exists(drive)
+CONTAINER_NAME = "archivebox-integration-archivebox-1"
+ADMIN_USERNAME = "admin"
+ADMIN_EMAIL = "admin@localhost"
 
-def run_mount():
-    """Start the FUSE mount on Drive P:"""
-    if is_mounted(MOUNT_POINT):
-        print(f"[Proxion] {MOUNT_POINT} is already mounted. Skipping.")
-        return None
-        
-    print(f"[Proxion] Mounting Pod {POD_PATH} to {MOUNT_POINT} ...")
-    fuse_script = os.path.abspath(os.path.join(os.getcwd(), "../../proxion-fuse/mount.py"))
-    cmd = ["python", fuse_script, MOUNT_POINT, POD_PATH]
-    return subprocess.Popen(cmd)
+# Derive deterministic password from master identity key
+def get_admin_password():
+    """Derive deterministic password for ArchiveBox using master identity key"""
+    key_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 
+                                             '../../proxion-keyring/proxion_keyring/identity_private.pem'))
+    master_key = load_or_create_identity_key(key_path)
+    return derive_app_password(master_key, "archivebox")
 
-def start_docker():
-    """Start ArchiveBox."""
-    print("[Proxion] Starting ArchiveBox Stack...")
-    # ArchiveBox often needs an init step
-    # subprocess.run(["docker-compose", "run", "archivebox", "init"], check=True)
-    subprocess.run(["docker-compose", "up", "-d"], check=True)
+ADMIN_PASSWORD = get_admin_password()
 
-def stop_docker():
-    print("[Proxion] Stopping ArchiveBox Stack...")
-    subprocess.run(["docker-compose", "down"], check=True)
+def wait_for_container(max_wait=60):
+    """Wait for container to be fully ready"""
+    print("[ArchiveBox] Waiting for container to be ready...")
+    for i in range(max_wait):
+        try:
+            result = subprocess.run(
+                ["docker", "ps", "--filter", f"name={CONTAINER_NAME}", "--format", "{{.Status}}"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            if "Up" in result.stdout:
+                print(f"[ArchiveBox] Container is running, waiting for Django...")
+                time.sleep(5)
+                return True
+        except subprocess.CalledProcessError:
+            pass
+        time.sleep(1)
+    return False
 
-def main():
-    mount_process = None
+def create_superuser_automated():
+    """Create superuser using a temporary Python script"""
+    print(f"[ArchiveBox] Creating admin user '{ADMIN_USERNAME}'...")
+    
+    # Create a Python script to run inside the container
+    python_script = f"""from django.contrib.auth import get_user_model
+User = get_user_model()
+if User.objects.filter(username='{ADMIN_USERNAME}').exists():
+    u = User.objects.get(username='{ADMIN_USERNAME}')
+    u.set_password('{ADMIN_PASSWORD}')
+    u.email = '{ADMIN_EMAIL}'
+    u.save()
+    print('UPDATED')
+else:
+    User.objects.create_superuser('{ADMIN_USERNAME}', '{ADMIN_EMAIL}', '{ADMIN_PASSWORD}')
+    print('CREATED')
+"""
+    
+    # Write script to a temporary file
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+        f.write(python_script)
+        temp_script = f.name
     
     try:
-        mount_process = run_mount()
-        time.sleep(2)
+        # Copy script into container
+        subprocess.run(
+            ["docker", "cp", temp_script, f"{CONTAINER_NAME}:/tmp/create_user.py"],
+            check=True,
+            capture_output=True
+        )
         
-        if mount_process and mount_process.poll() is not None:
-            print("Error: FUSE Mount failed to start.")
-            sys.exit(1)
+        # Run script inside container using stdin
+        result = subprocess.run(
+            ["docker", "exec", "-i", "--user=archivebox", CONTAINER_NAME, 
+             "archivebox", "manage", "shell"],
+            input=python_script,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        output = result.stdout + result.stderr
+        
+        # Clean up
+        subprocess.run(
+            ["docker", "exec", CONTAINER_NAME, "rm", "-f", "/tmp/create_user.py"],
+            capture_output=True
+        )
+        
+        if "CREATED" in output:
+            print(f"[ArchiveBox] SUCCESS: Admin user created!")
+            print_credentials()
+            return True
+        elif "UPDATED" in output:
+            print(f"[ArchiveBox] SUCCESS: Admin user password updated!")
+            print_credentials()
+            return True
+        else:
+            print(f"[ArchiveBox] WARNING: Unexpected output")
+            print(f"Output: {output[:500]}")
+            return False
             
-        start_docker()
-        
-        print("\n[Proxion] ArchiveBox is RUNNING at http://localhost:8090")
-        print(f"Proxion Archive: {MOUNT_POINT} (Pod) -> /data (Docker)")
-        print("Press Ctrl+C to stop.")
-        
-        while True:
-            time.sleep(1)
-            if mount_process and mount_process.poll() is not None:
-                print("Error: FUSE Mount crashed!")
-                break
-                
-    except KeyboardInterrupt:
-        print("\nStopping...")
+    except subprocess.TimeoutExpired:
+        print(f"[ArchiveBox] WARNING: Timeout while creating superuser")
+        return False
+    except Exception as e:
+        print(f"[ArchiveBox] WARNING: Error: {e}")
+        return False
     finally:
-        stop_docker()
-        if mount_process:
-            mount_process.terminate()
+        # Clean up temp file
+        try:
+            os.unlink(temp_script)
+        except:
+            pass
+
+def print_credentials():
+    """Print login credentials"""
+    print(f"[ArchiveBox]")
+    print(f"[ArchiveBox] Login Credentials:")
+    print(f"[ArchiveBox]    URL: http://127.0.0.1:8090")
+    print(f"[ArchiveBox]    Username: {ADMIN_USERNAME}")
+    print(f"[ArchiveBox]    Password: {ADMIN_PASSWORD}")
+    print(f"[ArchiveBox]")
+
+def main():
+    print("=" * 70)
+    print("[ArchiveBox] Auto-Configuration Starting...")
+    print("=" * 70)
+    
+    if not wait_for_container():
+        print("[ArchiveBox] ERROR: Container failed to start within timeout")
+        sys.exit(1)
+    
+    if create_superuser_automated():
+        print("[ArchiveBox] SUCCESS: Auto-configuration complete!")
+        print("[ArchiveBox]")
+        print("[ArchiveBox] Next Steps:")
+        print("[ArchiveBox]    1. Install Firefox extension:")
+        print("[ArchiveBox]       https://addons.mozilla.org/firefox/addon/archivebox-exporter/")
+        print("[ArchiveBox]    2. Configure extension URL: http://127.0.0.1:8090")
+        print("[ArchiveBox]    3. Start archiving!")
+    else:
+        print("[ArchiveBox] WARNING: Auto-configuration had issues")
+        print("[ArchiveBox]    Manual setup:")
+        print(f"[ArchiveBox]    docker exec -it --user=archivebox {CONTAINER_NAME} archivebox manage createsuperuser")
+    
+    print("=" * 70)
 
 if __name__ == "__main__":
     main()

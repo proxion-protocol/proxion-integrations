@@ -1,0 +1,5 @@
+version: '3'
+services:
+  vaultwarden:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/security/vaultwarden/:/data

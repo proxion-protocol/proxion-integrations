@@ -7,6 +7,15 @@ services:
     ports:
       - "8086:80"
     volumes:
-      - ./data:/data
+      - proxion_vault_data:/data
+      - c:/Users/hobo/ProxionData/vaultwarden/cert.pem:/host.crt:ro
+      - c:/Users/hobo/ProxionData/vaultwarden/key.pem:/host.key:ro
     environment:
       - SIGNUPS_ALLOWED=true
+      - ALLOW_HTTP_LOGIN=true
+      - DOMAIN=https://localhost:8086
+      - ROCKET_TLS={certs="/host.crt",key="/host.key"}
+      - I_REALLY_WANT_VOLATILE_STORAGE=false
+
+volumes:
+  proxion_vault_data:
