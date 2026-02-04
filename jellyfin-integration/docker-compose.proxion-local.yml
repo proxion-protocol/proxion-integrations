@@ -1,0 +1,5 @@
+version: '3'
+services:
+  jellyfin:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/media/jellyfin/:/media/pod-media:ro

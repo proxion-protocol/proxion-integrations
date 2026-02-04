@@ -1,142 +1,115 @@
-"""
-Configure Authentik for Calibre-Web SSO
 
-Uses the official authentik-client library.
-Requires: pip install authentik-client
+"""
+Configure Authentik for Calibre-Web SSO using direct API calls.
 """
 
-import authentik_client
-from authentik_client.api import core_api, providers_api, flows_api, outposts_api
-from authentik_client.models import (
-    ProxyProviderRequest,
-    ApplicationRequest,
-    ServiceConnectionRequest,
-    OutpostRequest,
-    ProxyMode,
-)
+import requests
+import json
+import sys
 
-# Configuration - Update this token!
+# Configuration
 AUTHENTIK_URL = "http://localhost:9000"
-API_TOKEN = "YOUR_TOKEN_HERE"  # Create in Admin UI: Directory -> Tokens & App Passwords
+API_TOKEN = "e8KWOC1MLtRFBLCWrOaquQhMX5abMWOkoy2uIuXjowndhJammbC9l5lWuz07"
+FLOW_PK = "cda727f9-4385-4550-b649-75608bb0278f"
 
-def get_client():
-    """Create configured API client."""
-    config = authentik_client.Configuration(
-        host=f"{AUTHENTIK_URL}/api/v3",
-    )
-    config.api_key["Authorization"] = API_TOKEN
-    config.api_key_prefix["Authorization"] = "Bearer"
-    return authentik_client.ApiClient(config)
+HEADERS = {
+    "Authorization": f"Bearer {API_TOKEN}",
+    "Content-Type": "application/json"
+}
 
-def get_authorization_flow(api_client):
-    """Find the implicit consent flow."""
-    flows = flows_api.FlowsApi(api_client)
-    try:
-        # Try implicit first (no "Authorize" button for user)
-        result = flows.flows_instances_list(slug="default-provider-authorization-implicit-consent")
-        if result.results:
-            return result.results[0].pk
-    except Exception:
-        pass
-    
-    # Fallback to explicit
-    result = flows.flows_instances_list(slug="default-provider-authorization-explicit-consent")
-    if result.results:
-        return result.results[0].pk
-    
-    raise Exception("No authorization flow found")
-
-def create_provider(api_client, auth_flow_pk):
-    """Create the Proxy Provider for Calibre."""
-    providers = providers_api.ProvidersApi(api_client)
-    
+def get_provider_pk():
+    """Get existing or create new Proxy Provider."""
     # Check if exists
-    existing = providers.providers_proxy_list(name="Calibre Provider")
-    if existing.results:
-        print(f"Provider already exists: {existing.results[0].pk}")
-        return existing.results[0].pk
+    resp = requests.get(f"{AUTHENTIK_URL}/api/v3/providers/proxy/", headers=HEADERS, params={"search": "Calibre Provider"})
+    resp.raise_for_status()
+    results = resp.json().get("results", [])
     
-    # Create new
-    request = ProxyProviderRequest(
-        name="Calibre Provider",
-        authorization_flow=auth_flow_pk,
-        external_host="http://localhost:8083",
-        internal_host="http://calibre-web:8083",
-        mode=ProxyMode.FORWARD_SINGLE,
-        intercept_header_auth=True,
-    )
-    result = providers.providers_proxy_create(proxy_provider_request=request)
-    print(f"Created Provider: {result.pk}")
-    return result.pk
+    if results:
+        print(f"Provider already exists: {results[0]['pk']}")
+        return results[0]['pk']
+    
+    # Create
+    data = {
+        "name": "Calibre Provider",
+        "authorization_flow": FLOW_PK,
+        "external_host": "http://localhost:8083",
+        "internal_host": "http://calibre-web:8083",
+        "mode": "forward_single",
+        "intercept_header_auth": True
+    }
+    resp = requests.post(f"{AUTHENTIK_URL}/api/v3/providers/proxy/", headers=HEADERS, json=data)
+    if resp.status_code >= 400:
+        print(f"Error creating provider: {resp.text}")
+    resp.raise_for_status()
+    print("Created Provider")
+    return resp.json()['pk']
 
-def create_application(api_client, provider_pk):
-    """Create the Application for Calibre."""
-    apps = core_api.CoreApi(api_client)
-    
+def get_app_slug(provider_pk):
+    """Get existing or create new Application."""
     # Check if exists
-    existing = apps.core_applications_list(name="Calibre Web")
-    if existing.results:
-        print(f"Application already exists: {existing.results[0].slug}")
-        return existing.results[0].slug
+    resp = requests.get(f"{AUTHENTIK_URL}/api/v3/core/applications/", headers=HEADERS, params={"search": "Calibre Web"})
+    resp.raise_for_status()
+    results = resp.json().get("results", [])
     
-    # Create new
-    request = ApplicationRequest(
-        name="Calibre Web",
-        slug="calibre-web",
-        provider=provider_pk,
-    )
-    result = apps.core_applications_create(application_request=request)
-    print(f"Created Application: {result.slug}")
-    return result.slug
+    if results:
+        # Check if provider is correct
+        if results[0].get("provider") != provider_pk:
+             # Update provider
+             print("Updating application provider link...")
+             requests.patch(f"{AUTHENTIK_URL}/api/v3/core/applications/{results[0]['slug']}/", headers=HEADERS, json={"provider": provider_pk})
+        print(f"Application already exists: {results[0]['slug']}")
+        return results[0]['slug']
+    
+    # Create
+    data = {
+        "name": "Calibre Web",
+        "slug": "calibre-web",
+        "provider": provider_pk
+    }
+    resp = requests.post(f"{AUTHENTIK_URL}/api/v3/core/applications/", headers=HEADERS, json=data)
+    if resp.status_code >= 400:
+        print(f"Error creating application: {resp.text}")
+    resp.raise_for_status()
+    print("Created Application")
+    return resp.json()['slug']
 
-def get_or_create_outpost(api_client, provider_pk):
-    """Get or create the embedded outpost for the proxy."""
-    outposts = outposts_api.OutpostsApi(api_client)
+def configure_outpost(provider_pk):
+    """Add provider to embedded outpost."""
+    resp = requests.get(f"{AUTHENTIK_URL}/api/v3/outposts/instances/", headers=HEADERS, params={"search": "authentik Embedded Outpost"})
+    resp.raise_for_status()
+    results = resp.json().get("results", [])
     
-    # Check for existing embedded outpost
-    existing = outposts.outposts_instances_list(name="authentik Embedded Outpost")
-    if existing.results:
-        outpost = existing.results[0]
-        # Add our provider to it
-        current_providers = outpost.providers or []
-        if provider_pk not in current_providers:
-            current_providers.append(provider_pk)
-            outposts.outposts_instances_partial_update(
-                uuid=outpost.pk,
-                patched_outpost_request={"providers": current_providers}
-            )
-            print(f"Added provider to existing outpost")
-        return outpost.pk
-    
-    print("No embedded outpost found. You may need to create one in the UI.")
-    return None
-
-def main():
-    if API_TOKEN == "YOUR_TOKEN_HERE":
-        print("ERROR: Please set API_TOKEN first!")
-        print("Steps:")
-        print("1. Go to http://localhost:9000/if/admin/")
-        print("2. Directory -> Tokens & App Passwords")
-        print("3. Create a new token for 'akadmin'")
-        print("4. Copy the token key and paste it in this script")
+    if not results:
+        print("ERROR: Embedded Outpost not found!")
         return
     
-    with get_client() as client:
-        # 1. Get flow
-        auth_flow = get_authorization_flow(client)
-        print(f"Using flow: {auth_flow}")
-        
-        # 2. Create Provider
-        provider_pk = create_provider(client, auth_flow)
-        
-        # 3. Create Application
-        app_slug = create_application(client, provider_pk)
-        
-        # 4. Configure Outpost
-        get_or_create_outpost(client, provider_pk)
-        
-        print("\n✅ DONE! Calibre Web is now configured in Authentik.")
-        print(f"   Access via: http://localhost:9000/if/user/#/applications")
+    outpost = results[0]
+    outpost_pk = outpost['pk']
+    current_providers = outpost.get('providers', [])
+    
+    if provider_pk not in current_providers:
+        print(f"Adding provider {provider_pk} to outpost {outpost_pk}...")
+        current_providers.append(provider_pk)
+        data = {"providers": current_providers}
+        resp = requests.patch(f"{AUTHENTIK_URL}/api/v3/outposts/instances/{outpost_pk}/", headers=HEADERS, json=data)
+        if resp.status_code >= 400:
+            print(f"Error updating outpost: {resp.text}")
+        resp.raise_for_status()
+        print("Outpost updated.")
+    else:
+        print("Provider already in outpost.")
+
+def main():
+    try:
+        print("Starting configuration...")
+        provider_pk = get_provider_pk()
+        get_app_slug(provider_pk)
+        configure_outpost(provider_pk)
+        print("\n✅ Configuration Complete!")
+    except Exception as e:
+        print(f"\n❌ FAILED: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == "__main__":
     main()

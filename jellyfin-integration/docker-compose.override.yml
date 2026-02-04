@@ -4,4 +4,4 @@
 services:
   jellyfin:
     volumes:
-      - P:/media/jellyfin/:/media/pod-media:ro # FUSE Drive P:/media/jellyfin
+      - C:/Users/hobo/Desktop/Proxion/stash/media/:/media/pod-media:ro # Absolute Path Fix

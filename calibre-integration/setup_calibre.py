@@ -73,6 +73,7 @@ try:
     except Exception as e:
         print(f"Path: FAIL ({e})")
     
+    
     # 3. Password
     try:
         pw = generate_password_hash('__PASSWORD__')
@@ -84,6 +85,14 @@ try:
             print("Password: FAIL (User not updated)")
     except Exception as e:
         print(f"Password: FAIL ({e})")
+
+    # 4. Reverse Proxy SSO (Auto-Enable)
+    try:
+        cur.execute("UPDATE settings SET config_allow_reverse_proxy_header_login = 1")
+        cur.execute("UPDATE settings SET config_reverse_proxy_login_header_name = 'X-authentik-username'")
+        print("SSO: OK")
+    except Exception as e:
+        print(f"SSO: FAIL ({e})")
     
     con.commit()
     con.close()

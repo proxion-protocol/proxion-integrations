@@ -4,12 +4,20 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     user: 1000:1000
-    network_mode: 'host'
+    # network_mode: 'host'
+    ports:
+      - "8096:8096"
+    networks:
+      - proxion-sso
     volumes:
       - ./config:/config
       - ./cache:/cache
-      - ./media:/media:ro
+      # - ./media:/media:ro  <-- CONFLICT: Parent is RO, cannot mkdir inside it.
     restart: 'unless-stopped'
+
+networks:
+  proxion-sso:
+    external: true
     # Optional: for hardware acceleration
     # devices:
     #  - /dev/dri/renderD128:/dev/dri/renderD128

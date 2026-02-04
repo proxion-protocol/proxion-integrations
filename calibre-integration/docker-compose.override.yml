@@ -2,4 +2,4 @@
 services:
   calibre-web:
     volumes:
-      - P:/knowledge/calibre/:/books # Proxion Drive P:/knowledge/calibre for e-books
+      - ../../stash/knowledge/calibre/:/books # Mapped to local stash path (Docker compat)

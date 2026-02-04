@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SamlConfigs />
+  <OidConfigs>
+    <item>
+      <key>
+        <string>authentik</string>
+      </key>
+      <value>
+        <PluginConfiguration>
+          <OidEndpoint>http://authentik-integration-server-1:9000/application/o/jellyfin/</OidEndpoint>
+          <OidClientId>e5bf2cc67e4343e8a7ca</OidClientId>
+          <OidSecret>63f3746c34ab4458952ed2a985f48dd7</OidSecret>
+          <ButtonText>Sign in with Authentik</ButtonText>
+          <Enabled>true</Enabled>
+          <EnableAuthorization>true</EnableAuthorization>
+          <EnableAllFolders>true</EnableAllFolders>
+          <EnabledFolders />
+          <AdminRoles>
+            <string>admins</string>
+          </AdminRoles>
+          <Roles>
+            <string>groups</string>
+          </Roles>
+          <RoleClaim>groups</RoleClaim>
+          <EnableFolderRoles>false</EnableFolderRoles>
+          <EnableLiveTvRoles>false</EnableLiveTvRoles>
+          <EnableLiveTv>false</EnableLiveTv>
+          <EnableLiveTvManagement>false</EnableLiveTvManagement>
+          <LiveTvRoles />
+          <LiveTvManagementRoles />
+          <FolderRoleMappings />
+          <OidScopes>
+            <string>groups</string>
+            <string>openid</string>
+            <string>profile</string>
+            <string>email</string>
+          </OidScopes>
+          <PortOverride xsi:nil="true" />
+          <NewPath>true</NewPath>
+          <CanonicalLinks />
+          <DisableHttps>true</DisableHttps>
+          <DisablePushedAuthorization>false</DisablePushedAuthorization>
+          <DoNotValidateEndpoints>true</DoNotValidateEndpoints>
+          <DoNotValidateIssuerName>true</DoNotValidateIssuerName>
+        </PluginConfiguration>
+      </value>
+    </item>
+  </OidConfigs>
+</PluginConfiguration>
