@@ -709,3 +709,20 @@ AttributeError: 'NoneType' object has no attribute 'get'
 [2026-02-04 01:29:02,996]  INFO {server.py:319} webserver stop (restart=False)
 [2026-02-04 01:29:02,997]  INFO {base.py:245} Scheduler has been shut down
 [2026-02-04 01:29:02,998]  INFO {server.py:298} Performing shutdown of Calibre-Web
+[2026-02-04 01:29:07,469]  WARN {config_sql.py:364} Log path  not valid, falling back to default
+[2026-02-04 01:29:07,485]  INFO {__init__.py:177} Starting Calibre Web...
+[2026-02-04 01:29:07,881]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+
+[2026-02-04 01:29:08,022]  INFO {base.py:214} Scheduler started
+[2026-02-04 01:29:08,023]  INFO {base.py:1090} Added job "delete temp" to job store "default"
+[2026-02-04 01:29:08,024]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
+[2026-02-04 01:29:08,024]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
+[2026-02-04 01:29:08,025]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-04 01:29:08 UTC], next run at: 2026-02-04 01:29:08 UTC)" (scheduled at 2026-02-04 01:29:08.024580+00:00)
+[2026-02-04 01:29:08,025]  INFO {base.py:728} Removed job 0600a468bd4c405abe323255d1d0b3f7
+[2026-02-04 01:29:08,042]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-04 01:29:08 UTC], next run at: 2026-02-04 01:29:08 UTC)" executed successfully
+[2026-02-04 01:29:08,883]  INFO {server.py:218} Starting Gevent server on [::]:8083
+[2026-02-04 04:00:00,002]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-05 04:00:00 UTC)" (scheduled at 2026-02-04 04:00:00+00:00)
+[2026-02-04 04:00:00,016]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-05 04:00:00 UTC)" executed successfully
+[2026-02-04 04:10:00,002]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-05 04:10:00 UTC)" (scheduled at 2026-02-04 04:10:00+00:00)
+[2026-02-04 04:10:00,007]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-05 04:10:00 UTC)" executed successfully
