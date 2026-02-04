@@ -1,0 +1,5 @@
+# Proxion Integrations Ignores
+jellyfin-integration/config/log/
+__pycache__/
+*.pyc
+.env
