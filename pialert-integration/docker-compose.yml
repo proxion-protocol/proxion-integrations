@@ -2,11 +2,19 @@ version: '3'
 services:
   pialert:
     container_name: pialert
-    image: joke2k/pialert:latest
+    image: jokobsk/pi.alert:latest
     restart: unless-stopped
+    ports:
+      - "20211:20211"
     environment:
       - TZ=UTC
-    network_mode: host
+      - PORT=20211
+    networks:
+      - proxion-network
     volumes:
       - P:/security/pialert/config:/home/pi/pialert/config
       - P:/security/pialert/db:/home/pi/pialert/db
+
+networks:
+  proxion-network:
+    external: true

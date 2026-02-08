@@ -1,0 +1,6 @@
+version: '3'
+services:
+  syncthing:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/system/syncthing/config:/config
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/system/syncthing/data:/data

@@ -1,0 +1,5 @@
+version: '3'
+services:
+  prowlarr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/indexers/config:/config

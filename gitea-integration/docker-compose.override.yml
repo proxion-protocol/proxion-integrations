@@ -1,5 +1,0 @@
-# Gitea Proxion Binding
-services:
-  server:
-    volumes:
-      - P:/dev/gitea/:/data # Proxion Drive P:/dev/gitea for repositories and config

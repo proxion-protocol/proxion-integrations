@@ -1,8 +1,0 @@
-# Ghost Proxion Binding
-services:
-  ghost:
-    volumes:
-      - P:/web/ghost/content:/var/lib/ghost/content
-  db:
-    volumes:
-      - P:/web/ghost/mysql:/var/lib/mysql

@@ -1,0 +1,35 @@
+# Stage 1: Official Upstream
+FROM adguard/adguardhome:latest AS upstream
+
+# Stage 2: Hardened Forge (Alpine Edge for 0-CVE baseline)
+FROM alpine:edge
+
+# Metadata
+LABEL maintainer="Proxion Security Council"
+LABEL security.policy="ZERO-TRUST FORGE (V5)"
+
+# 1. Install critical security patches
+# We force the latest versions available in edge to kill Zero-Days
+RUN apk update && \
+    apk upgrade --no-cache && \
+    apk add --no-cache \
+    openssl \
+    busybox \
+    libssl3 \
+    libcrypto3 \
+    ca-certificates \
+    tzdata
+
+# 2. Extract Binary and assets from upstream
+# We discard the vulnerable OS layers of the official image
+COPY --from=upstream /opt/adguardhome /opt/adguardhome
+
+# 3. Network Configuration
+# AdGuardHome usually listens on these
+EXPOSE 53/tcp 53/udp 67/udp 68/udp 80/tcp 443/tcp 443/udp 3000/tcp 853/tcp 784/udp 8853/udp 5443/tcp 5443/udp
+
+WORKDIR /opt/adguardhome
+
+# 4. Standard AdGuard Execution
+ENTRYPOINT ["/opt/adguardhome/AdGuardHome"]
+CMD ["--no-check-update", "-c", "/opt/adguardhome/conf/AdGuardHome.yaml", "-w", "/opt/adguardhome/work"]

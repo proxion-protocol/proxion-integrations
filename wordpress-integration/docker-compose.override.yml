@@ -1,5 +1,0 @@
-# WordPress Proxion Binding
-services:
-  wordpress:
-    volumes:
-      - P:/web/wordpress/:/var/www/html/wp-content # Proxion Drive P:/web/wordpress for uploads, plugins, and themes

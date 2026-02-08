@@ -1,0 +1,5 @@
+version: '3'
+services:
+  navidrome:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/navidrome/:/music:ro

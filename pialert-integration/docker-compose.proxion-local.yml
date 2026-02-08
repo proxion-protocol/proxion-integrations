@@ -1,0 +1,6 @@
+version: '3'
+services:
+  pialert:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/security/pialert/config:/home/pi/pialert/config
+      - C:/Users/hobo/Desktop/Proxion/stash/security/pialert/db:/home/pi/pialert/db

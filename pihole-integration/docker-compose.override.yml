@@ -1,5 +1,0 @@
-# Pi-hole Proxion Binding
-services:
-  pihole:
-    volumes:
-      - P:/network/pihole/:/etc/pihole # Proxion Drive P:/network/pihole for blocklists and persistence

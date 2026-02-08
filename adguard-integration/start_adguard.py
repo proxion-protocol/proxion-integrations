@@ -44,14 +44,14 @@ def main():
             
         start_docker()
         
-        print("\n[Proxion] AdGuard Home is RUNNING at http://localhost:3002")
+        print("\n[Proxion] AdGuard Home is RUNNING at http://localhost:3055")
         print(f"Proxion Network: {MOUNT_POINT} (Pod) -> /work, /conf (Docker)")
         print("\n[SETUP] To protect THIS device immediately:")
         print("  1. Open Windows 'Network & Internet' Settings.")
         print("  2. Select your active connection (Wi-Fi/Ethernet) -> Properties.")
         print("  3. Set 'DNS server assignment' to Manual -> IPv4 ON.")
         print("  4. Set 'Preferred DNS' to: 127.0.0.1")
-        print("  5. Save and visit http://localhost:3002 to watch the counters climb!")
+        print("  5. Save and visit http://localhost:3055 to watch the counters climb!")
         print("\nPress Ctrl+C to stop.")
         
         while True:

@@ -1,0 +1,5 @@
+version: '3'
+services:
+  searxng:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/web/search/config:/etc/searxng

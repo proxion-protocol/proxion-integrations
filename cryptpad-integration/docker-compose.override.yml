@@ -1,5 +1,0 @@
-# CryptPad Integration with Proxion FUSE
-services:
-  cryptpad:
-    volumes:
-      - P:/office/cryptpad/:/cryptpad/blob # FUSE Drive P:/office/cryptpad for encrypted blobs

@@ -1,0 +1,5 @@
+version: '3'
+services:
+  jellyseerr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/requests-jellyfin/config:/app/config

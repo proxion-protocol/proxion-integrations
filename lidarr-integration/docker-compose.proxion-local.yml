@@ -1,0 +1,7 @@
+version: '3'
+services:
+  lidarr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/lidarr-config:/config
+      - C:/Users/hobo/Desktop/Proxion/stash/media/music:/music
+      - C:/Users/hobo/Desktop/Proxion/stash/downloads/data:/downloads

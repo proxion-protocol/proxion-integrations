@@ -1,5 +1,0 @@
-# Firefly III Integration with Proxion FUSE
-services:
-  fireflyapp:
-    volumes:
-      - P:/finance/firefly/:/var/www/html/storage/upload # FUSE Drive P:/finance/firefly

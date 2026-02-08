@@ -123,9 +123,6 @@
         "portainer": {
             "path": "system/docker-management"
         },
-        "authelia": {
-            "path": "security/authelia"
-        },
         "watchtower": {
             "path": "system/watchtower"
         },

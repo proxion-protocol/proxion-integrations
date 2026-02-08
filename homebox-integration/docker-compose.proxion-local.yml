@@ -1,0 +1,5 @@
+version: '3'
+services:
+  homebox:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/home/inventory/data:/data

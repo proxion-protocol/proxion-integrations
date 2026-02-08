@@ -1,0 +1,7 @@
+version: '3'
+services:
+  bazarr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/subtitles/config:/config
+      - C:/Users/hobo/Desktop/Proxion/stash/media/movies:/movies
+      - C:/Users/hobo/Desktop/Proxion/stash/media/tv:/tv

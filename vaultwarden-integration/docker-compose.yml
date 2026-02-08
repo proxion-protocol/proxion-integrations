@@ -4,18 +4,36 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: unless-stopped
-    ports:
-      - "8086:80"
+    # Expose internally to nginx, but don't map to host directly
+    expose:
+      - "80"
     volumes:
-      - proxion_vault_data:/data
-      - c:/Users/hobo/ProxionData/vaultwarden/cert.pem:/host.crt:ro
-      - c:/Users/hobo/ProxionData/vaultwarden/key.pem:/host.key:ro
+      - c:/Users/hobo/Desktop/Proxion/proxion-core/storage/security/vaultwarden:/data
+      - ./cert.pem:/host.crt:ro
+      - ./key.pem:/host.key:ro
     environment:
       - SIGNUPS_ALLOWED=true
+      - SIGNUPS_VERIFY=false
       - ALLOW_HTTP_LOGIN=true
-      - DOMAIN=https://localhost:8086
-      - ROCKET_TLS={certs="/host.crt",key="/host.key"}
+      - DOMAIN=http://localhost:8098
+      - LOG_LEVEL=debug
       - I_REALLY_WANT_VOLATILE_STORAGE=false
+    networks:
+      - proxion-network
 
-volumes:
-  proxion_vault_data:
+  nginx:
+    image: nginx:alpine
+    container_name: vaultwarden-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8098:80"
+    networks:
+      - proxion-network
+    restart: unless-stopped
+    depends_on:
+      - vaultwarden
+
+networks:
+  proxion-network:
+    external: true

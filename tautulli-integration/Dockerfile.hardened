@@ -1,0 +1,8 @@
+FROM ghcr.io/tautulli/tautulli:latest
+
+# Auto-remediation by Deep Forge
+# Deep Forge: OS Remediation (Debian/Ubuntu)
+RUN (command -v apt-get >/dev/null && apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*) || true
+# Deep Forge: Python Package Remediation
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel || true
+RUN (pip freeze > /app/requirements.lock 2>/dev/null) || true

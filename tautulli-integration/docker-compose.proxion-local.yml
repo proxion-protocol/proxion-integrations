@@ -1,0 +1,5 @@
+version: '3'
+services:
+  tautulli:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/plex-stats:/config

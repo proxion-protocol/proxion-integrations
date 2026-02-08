@@ -2,6 +2,9 @@ version: '3'
 services:
   tautulli:
     image: ghcr.io/tautulli/tautulli:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: tautulli
     restart: unless-stopped
     environment:

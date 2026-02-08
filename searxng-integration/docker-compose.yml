@@ -4,13 +4,26 @@ services:
     container_name: searxng
     image: searxng/searxng:latest
     restart: unless-stopped
-    ports:
-      - "8083:8080"
     volumes:
       - P:/web/search/config:/etc/searxng
     environment:
       - SEARXNG_BASE_URL=http://localhost:8083
+    networks:
+      - proxion-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: searxng-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8083:80"
+    networks:
+      - proxion-network
+    restart: unless-stopped
+    depends_on:
+      - searxng
+
 networks:
-  default:
-    name: proxion-network
+  proxion-network:
     external: true

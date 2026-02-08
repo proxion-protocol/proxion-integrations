@@ -2,6 +2,12 @@ version: '3'
 services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: bazarr
     restart: unless-stopped
     environment:

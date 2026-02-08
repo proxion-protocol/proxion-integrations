@@ -1,5 +1,0 @@
-# Vaultwarden Proxion Binding
-services:
-  vaultwarden:
-    volumes:
-      - P:/security/vaultwarden/:/data # Proxion Drive P:/security/vaultwarden for Vaultwarden data

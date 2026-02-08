@@ -9,9 +9,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ./config:/config
-      - ./books:/books # Local entry point, will be overridden by FUSE
-     # ports:
-     #   - 8083:8083 # Handled by Authentik Proxy
+      - ./books:/books
     restart: unless-stopped
     networks:
       - proxion-sso
@@ -19,10 +17,12 @@ services:
   nginx:
     image: nginx:alpine
     container_name: calibre-nginx
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - 8083:80
+      - 8085:80
     networks:
       - proxion-sso
     restart: unless-stopped

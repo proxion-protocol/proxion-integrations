@@ -1,7 +1,9 @@
 version: "3"
 services:
   adguardhome:
-    image: adguard/adguardhome
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: adguardhome
     restart: always
     ports:
@@ -14,7 +16,7 @@ services:
       - "8853:8853/udp"
       - "5443:5443/tcp"
       - "5443:5443/udp"
-      - "3002:3000/tcp" # Setup/UI
+      - "127.0.0.1:3055:3000/tcp" # Setup/UI
     volumes:
-      - ./work:/opt/adguardhome/work
-      - ./conf:/opt/adguardhome/conf
+      - ../../proxion-core/storage/network/adguard/work:/opt/adguardhome/work
+      - ../../proxion-core/storage/network/adguard/conf:/opt/adguardhome/conf

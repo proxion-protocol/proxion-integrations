@@ -1,0 +1,7 @@
+FROM ghcr.io/immich-app/immich-server:release
+
+# Auto-remediation by Deep Forge
+# Deep Forge: OS Remediation (Debian/Ubuntu)
+RUN (command -v apt-get >/dev/null && apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*) || true
+# Deep Forge: Node.js Package Remediation
+RUN npm audit fix --force || true

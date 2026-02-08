@@ -1,0 +1,7 @@
+version: '3'
+services:
+  sonarr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/media/sonarr-config:/config
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/media/tv:/tv
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/downloads/data:/downloads

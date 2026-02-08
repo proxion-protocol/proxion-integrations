@@ -1,0 +1,7 @@
+version: '3'
+services:
+  transmission:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/downloads/transmission-config:/config
+      - C:/Users/hobo/Desktop/Proxion/stash/downloads/data:/downloads
+      - C:/Users/hobo/Desktop/Proxion/stash/downloads/watch:/watch

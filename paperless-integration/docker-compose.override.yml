@@ -1,8 +1,0 @@
-# Paperless-ngx Proxion Binding
-services:
-  webserver:
-    volumes:
-      - P:/docs/paperless/media:/usr/src/paperless/media
-      - P:/docs/paperless/data:/usr/src/paperless/data
-      - P:/docs/paperless/consume:/usr/src/paperless/consume
-      - P:/docs/paperless/export:/usr/src/paperless/export

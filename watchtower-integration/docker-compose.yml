@@ -8,7 +8,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_POLL_INTERVAL=3600
+      - DOCKER_API_VERSION=1.44
 networks:
   default:
     name: proxion-network

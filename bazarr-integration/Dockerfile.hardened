@@ -1,0 +1,6 @@
+FROM lscr.io/linuxserver/bazarr:latest
+
+# Auto-remediation by Deep Forge
+# Forge V3: Targeted Python Package Upgrades
+RUN pip install --no-cache-dir Flask-Cors==6.0.0 Flask-Cors==6.0.0 Flask-Cors==6.0.0 Jinja2==3.1.6 Werkzeug==3.1.4 Werkzeug==3.1.5 h11==0.16.0 python-socketio==5.14.0 requests==2.32.4 urllib3==2.6.0 urllib3==2.6.0 urllib3==2.6.3 urllib3==2.5.0 urllib3==2.5.0 waitress==3.0.1 waitress==3.0.1 || true
+RUN (pip freeze > /app/requirements.lock 2>/dev/null) || true

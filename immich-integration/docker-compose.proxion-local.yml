@@ -1,0 +1,5 @@
+version: '3'
+services:
+  immich-server:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/media/immich/:/usr/src/app/upload

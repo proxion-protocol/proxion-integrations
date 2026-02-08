@@ -1,0 +1,7 @@
+version: '3'
+services:
+  radarr:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/radarr-config:/config
+      - C:/Users/hobo/Desktop/Proxion/stash/media/movies:/movies
+      - C:/Users/hobo/Desktop/Proxion/stash/downloads/data:/downloads

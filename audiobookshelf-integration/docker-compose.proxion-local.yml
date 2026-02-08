@@ -1,0 +1,8 @@
+version: '3'
+services:
+  audiobookshelf:
+    volumes:
+      - C:/Users/hobo/Desktop/Proxion/stash/media/audiobooks/library:/audiobooks
+      - C:/Users/hobo/Desktop/Proxion/stash/media/audiobooks/podcasts:/podcasts
+      - C:/Users/hobo/Desktop/Proxion/stash/media/audiobooks/config:/config
+      - C:/Users/hobo/Desktop/Proxion/stash/media/audiobooks/metadata:/metadata
