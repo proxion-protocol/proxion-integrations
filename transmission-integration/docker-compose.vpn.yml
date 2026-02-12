@@ -1,0 +1,27 @@
+version: '3'
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+      # The user will need to provide these if they decide to use it:
+      - WIREGuard_PRIVATE_KEY=your_private_key
+      - WIREGUARD_ADDRESSES=10.64.0.1/32
+      - SERVER_COUNTRIES=USA
+    ports:
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
+      - 9091:9091 # Transmission Web UI (routed through VPN)
+    restart: unless-stopped
+
+  transmission:
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
