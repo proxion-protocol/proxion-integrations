@@ -5,6 +5,7 @@ services:
       - C:/Users/hobo/Desktop/Proxion/stash/media/tdarr-config/server:/app/server
       - C:/Users/hobo/Desktop/Proxion/stash/media/tdarr-config/configs:/app/configs
       - C:/Users/hobo/Desktop/Proxion/stash/media/tdarr-config/logs:/app/logs
+      - I:/music:/media/music
       - C:/Users/hobo/Desktop/Proxion/stash/media/movies:/media/movies
       - C:/Users/hobo/Desktop/Proxion/stash/media/tv:/media/tv
       - C:/Users/hobo/Desktop/Proxion/stash/media/tdarr-cache:/temp

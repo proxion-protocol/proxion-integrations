@@ -4,7 +4,7 @@
 services:
   immich-server:
     volumes:
-      - P:/media/immich/:/usr/src/app/upload # FUSE Drive P:/media/immich
+      - ../../stash/media/immich/:/usr/src/app/upload # FUSE Drive P:/media/immich
     environment:
       UPLOAD_LOCATION: /usr/src/app/upload
       EXTERNAL_PATH: /usr/src/app/upload

@@ -2,6 +2,72 @@ version: '3'
 services:
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: jellyseerr
     restart: unless-stopped
     environment:

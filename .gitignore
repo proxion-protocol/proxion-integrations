@@ -1,5 +1,22 @@
 # Proxion Integrations Ignores
-jellyfin-integration/config/log/
+**/log/
+**/logs/
+**/cache/
+**/data/
+**/db/
+**/postgres/
+**/metadata/
+**/plugins/
+**/config/data/
+**/config/root/
+
+# Python & OS
 __pycache__/
 *.pyc
 .env
+.DS_Store
+Thumbs.db
+
+# Temp/OPML
+*.opml
+generate_opml*.py

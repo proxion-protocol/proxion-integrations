@@ -1,4 +1,3 @@
-version: "3"
 services:
   navidrome:
     image: deluan/navidrome:latest
@@ -10,7 +9,9 @@ services:
       ND_SCANSCHEDULE: 1h
       ND_LOGLEVEL: info  
       ND_BASEURL: ""
+      PUID: 1001
+      PGID: 1001
     restart: unless-stopped
     volumes:
       - "./data:/data"
-      - "./music:/music:ro"
+      - "../../stash/I_Music:/music:ro"

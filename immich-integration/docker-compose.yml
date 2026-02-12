@@ -22,6 +22,7 @@ services:
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/data
+      - ../../stash/I_Photos:/mnt/photos:ro
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -44,6 +45,7 @@ services:
     #   service: cpu # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
       - model-cache:/cache
+      - ../../stash/I_Photos:/mnt/photos:ro
     env_file:
       - .env
     restart: always

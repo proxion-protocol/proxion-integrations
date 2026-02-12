@@ -12,8 +12,8 @@ services:
     networks:
       - proxion-network
     volumes:
-      - P:/security/pialert/config:/home/pi/pialert/config
-      - P:/security/pialert/db:/home/pi/pialert/db
+      - ../../stash/security/pialert/config:/app/config
+      - ../../stash/security/pialert/db:/app/db
 
 networks:
   proxion-network:
