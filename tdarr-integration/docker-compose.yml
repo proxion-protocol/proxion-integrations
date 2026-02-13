@@ -19,6 +19,8 @@ services:
       - ../../stash/media/tv:/media/tv
       - ../../stash/media/tdarr-cache:/temp
       - ../../stash/I_Music:/media/music
+      - ../../stash/I_Video:/media/video
+      - ../../stash/I_Ingest:/media/ingest
     ports:
       - "8265:8265"
       - "8266:8266"

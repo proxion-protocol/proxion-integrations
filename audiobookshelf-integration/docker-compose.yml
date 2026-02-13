@@ -125,6 +125,48 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: audiobookshelf
     restart: unless-stopped
     ports:

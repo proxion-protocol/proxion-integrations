@@ -137,6 +137,48 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
     container_name: bazarr
     restart: unless-stopped
     environment:

@@ -102,3 +102,7 @@
 [2026-02-12 04:00:00,069]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-13 04:00:00 UTC)" executed successfully
 [2026-02-12 04:10:00,001]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-13 04:10:00 UTC)" (scheduled at 2026-02-12 04:10:00+00:00)
 [2026-02-12 04:10:00,167]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-13 04:10:00 UTC)" executed successfully
+[2026-02-13 04:00:00,010]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-14 04:00:00 UTC)" (scheduled at 2026-02-13 04:00:00+00:00)
+[2026-02-13 04:00:00,029]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-14 04:00:00 UTC)" executed successfully
+[2026-02-13 04:10:00,018]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-14 04:10:00 UTC)" (scheduled at 2026-02-13 04:10:00+00:00)
+[2026-02-13 04:10:00,024]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-14 04:10:00 UTC)" executed successfully

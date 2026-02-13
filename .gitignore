@@ -16,7 +16,14 @@ __pycache__/
 .env
 .DS_Store
 Thumbs.db
+proxion_debug.log
 
 # Temp/OPML
 *.opml
 generate_opml*.py
+
+# VPN/Sensitive
+docker-compose.override.yml
+docker-compose.override.yml.disabled
+vpn.env
+*.key
