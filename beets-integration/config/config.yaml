@@ -1,0 +1,44 @@
+directory: /mnt/host/i/music
+library: /config/musiclibrary.db
+
+# Plugins
+plugins: 
+  - chroma
+  - duplicates
+  - edit
+  - ftintitle
+  - lastgenre
+  - lastgenre
+  - mbsync
+  - missing
+  - scrub
+  - web
+
+# Import options
+import:
+  write: yes
+  copy: no
+  move: no
+  resume: yes
+  incremental: yes
+  quiet_fallback: asis
+  timid: no
+  log: /config/beets.log
+
+# Deduplication settings
+duplicates:
+  checksum: ''
+  count: yes
+  full: yes
+  strict: no
+  tiebreak:
+    items: [bitrate, length]
+
+# Acoustic Fingerprinting
+chroma:
+  auto: yes
+
+# Web Interface
+web:
+  host: 0.0.0.0
+  port: 8337

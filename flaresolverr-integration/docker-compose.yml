@@ -1,0 +1,20 @@
+services:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.hardened
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - TZ=America/New_York
+    ports:
+      - "8191:8191"
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    restart: unless-stopped
+networks:
+  default:
+    name: proxion-network
+    external: true

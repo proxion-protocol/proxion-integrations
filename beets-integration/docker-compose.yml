@@ -1,0 +1,24 @@
+version: '3'
+services:
+  beets:
+    image: lscr.io/linuxserver/beets:latest
+    container_name: beets
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+      # Map the unified stash - matching Czkawka for consistency
+      - ${STASH_ROOT}:/storage/stash
+      # Map physical drives for direct access if needed
+      - ${MEDIA_MUSIC}:/mnt/host/music
+    ports:
+      - 8337:8337 # Web UI (if enabled)
+    restart: unless-stopped
+    networks:
+      - proxion-network
+
+networks:
+  proxion-network:
+    external: true

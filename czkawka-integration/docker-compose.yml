@@ -1,0 +1,25 @@
+version: '3'
+services:
+  czkawka:
+    image: jlesage/czkawka:latest
+    container_name: czkawka
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+      # Map the unified stash for navigation
+      - ${STASH_ROOT}:/storage/stash
+      # Map physical drives so symlinks in stash resolve correctly
+      - ${MEDIA_MUSIC}:/mnt/host/music
+      - ${MEDIA_MOVIES}:/mnt/host/movies
+    ports:
+      - 5800:5800 # Web GUI
+    restart: unless-stopped
+    networks:
+      - proxion-network
+
+networks:
+  proxion-network:
+    external: true
