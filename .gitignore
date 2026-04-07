@@ -27,3 +27,4 @@ docker-compose.override.yml
 docker-compose.override.yml.disabled
 vpn.env
 *.key
+**/config/calibre-web.log*
