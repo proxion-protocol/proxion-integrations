@@ -12,7 +12,7 @@ services:
       - ./books:/books
     restart: unless-stopped
     networks:
-      - proxion-sso
+      - proxion-network
 
   nginx:
     image: nginx:alpine
@@ -24,11 +24,11 @@ services:
     ports:
       - 8085:80
     networks:
-      - proxion-sso
+      - proxion-network
     restart: unless-stopped
     depends_on:
       - calibre-web
 
 networks:
-  proxion-sso:
+  proxion-network:
     external: true

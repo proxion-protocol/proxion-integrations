@@ -1,5 +1,0 @@
-FROM fallenbagel/jellyseerr:latest
-
-# Auto-remediation by Deep Forge
-# Forge V3: Targeted OS Package Upgrades (Alpine)
-RUN (command -v apk >/dev/null && apk add --upgrade busybox busybox-binsh libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 ssl_client) || true

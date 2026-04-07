@@ -8,10 +8,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=UTC
+      - TZ=UTC
     volumes:
-      - P:/media/radarr-config:/config
-      - P:/media/movies:/movies
-      - P:/downloads/data:/downloads
+      - ${STASH_ROOT}/media/radarr-config:/config
+      - ${MEDIA_MOVIES}:/movies
+      - ${LOCAL_DOWNLOADS}:/downloads
     ports:
       - "7878:7878"
 networks:

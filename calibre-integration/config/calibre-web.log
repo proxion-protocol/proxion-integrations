@@ -1,108 +1,21 @@
-[2026-02-08 02:38:10,944]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-08 04:00:00,000]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-09 04:00:00 UTC)" (scheduled at 2026-02-08 04:00:00+00:00)
-[2026-02-08 04:00:00,003]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-09 04:00:00 UTC)" executed successfully
-[2026-02-08 04:10:00,000]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-09 04:10:00 UTC)" (scheduled at 2026-02-08 04:10:00+00:00)
-[2026-02-08 04:10:00,004]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-09 04:10:00 UTC)" executed successfully
-[2026-02-08 05:10:45,805]  INFO {server.py:319} webserver stop (restart=False)
-[2026-02-08 05:10:45,808]  INFO {base.py:245} Scheduler has been shut down
-[2026-02-08 05:10:45,811]  INFO {server.py:298} Performing shutdown of Calibre-Web
-[2026-02-08 05:10:56,392]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-08 05:10:56,419]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-08 05:10:57,282]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+[2026-04-05 14:46:40,036]  INFO {server.py:218} Starting Gevent server on [::]:8083
+[2026-04-05 15:47:06,245]  INFO {server.py:331} webserver stop (restart=False)
+[2026-04-05 15:47:06,246]  INFO {base.py:245} Scheduler has been shut down
+[2026-04-05 15:47:06,248]  INFO {server.py:310} Performing shutdown of Calibre-Web
+[2026-04-05 15:47:12,019]  WARN {config_sql.py:365} Log path  not valid, falling back to default
+[2026-04-05 15:47:12,042]  INFO {__init__.py:184} Starting Calibre Web...
+[2026-04-05 15:47:12,605]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
   warnings.warn(
 
-[2026-02-08 05:10:57,635]  INFO {base.py:214} Scheduler started
-[2026-02-08 05:10:57,643]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-08 05:10:57,647]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-08 05:10:57,674]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-08 05:10:57,690]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-08 05:10:57 UTC], next run at: 2026-02-08 05:10:57 UTC)" (scheduled at 2026-02-08 05:10:57.674118+00:00)
-[2026-02-08 05:10:57,690]  INFO {base.py:728} Removed job b845b5a765274f10b686febfcb700879
-[2026-02-08 05:10:57,716]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-08 05:10:57 UTC], next run at: 2026-02-08 05:10:57 UTC)" executed successfully
-[2026-02-08 05:10:59,321]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-08 22:40:52,129]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-08 22:40:52,474]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-08 22:40:58,331]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
-
-[2026-02-08 22:40:59,790]  INFO {base.py:214} Scheduler started
-[2026-02-08 22:40:59,814]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-08 22:40:59,819]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-08 22:40:59,832]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-08 22:40:59,912]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-08 22:40:59 UTC], next run at: 2026-02-08 22:40:59 UTC)" (scheduled at 2026-02-08 22:40:59.832681+00:00)
-[2026-02-08 22:40:59,912]  INFO {base.py:728} Removed job 64375e073b2649daa877d1fc8bb1f117
-[2026-02-08 22:40:59,962]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-08 22:40:59 UTC], next run at: 2026-02-08 22:40:59 UTC)" executed successfully
-[2026-02-08 22:41:05,452]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-09 04:00:00,003]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-10 04:00:00 UTC)" (scheduled at 2026-02-09 04:00:00+00:00)
-[2026-02-09 04:00:00,017]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-10 04:00:00 UTC)" executed successfully
-[2026-02-09 04:10:00,002]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-10 04:10:00 UTC)" (scheduled at 2026-02-09 04:10:00+00:00)
-[2026-02-09 04:10:00,019]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-10 04:10:00 UTC)" executed successfully
-[2026-02-10 00:41:44,869]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-10 00:41:45,164]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-10 00:41:50,889]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
-
-[2026-02-10 00:41:52,153]  INFO {base.py:214} Scheduler started
-[2026-02-10 00:41:52,163]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-10 00:41:52,182]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-10 00:41:52,194]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-10 00:41:52,198]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-10 00:41:52 UTC], next run at: 2026-02-10 00:41:52 UTC)" (scheduled at 2026-02-10 00:41:52.194821+00:00)
-[2026-02-10 00:41:52,261]  INFO {base.py:728} Removed job ff3bf52edd0f461fb373c7d440fb4bf4
-[2026-02-10 00:41:52,273]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-10 00:41:52 UTC], next run at: 2026-02-10 00:41:52 UTC)" executed successfully
-[2026-02-10 00:41:58,139]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-10 03:22:43,365]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-10 03:22:43,492]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-10 03:22:48,634]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
-
-[2026-02-10 03:22:50,702]  INFO {base.py:214} Scheduler started
-[2026-02-10 03:22:50,724]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-10 03:22:50,753]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-10 03:22:50,794]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-10 03:22:50,835]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-10 03:22:50 UTC], next run at: 2026-02-10 03:22:50 UTC)" (scheduled at 2026-02-10 03:22:50.794534+00:00)
-[2026-02-10 03:22:50,835]  INFO {base.py:728} Removed job dde90a7888974c86a71bb492b0a494ab
-[2026-02-10 03:22:50,946]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-10 03:22:50 UTC], next run at: 2026-02-10 03:22:50 UTC)" executed successfully
-[2026-02-10 03:22:56,076]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-10 04:00:00,000]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-11 04:00:00 UTC)" (scheduled at 2026-02-10 04:00:00+00:00)
-[2026-02-10 04:00:00,002]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-11 04:00:00 UTC)" executed successfully
-[2026-02-10 04:10:00,000]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-11 04:10:00 UTC)" (scheduled at 2026-02-10 04:10:00+00:00)
-[2026-02-10 04:10:00,001]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-11 04:10:00 UTC)" executed successfully
-[2026-02-10 08:33:28,078]  INFO {server.py:331} webserver stop (restart=False)
-[2026-02-10 08:33:28,129]  INFO {base.py:245} Scheduler has been shut down
-[2026-02-10 08:33:28,164]  INFO {server.py:310} Performing shutdown of Calibre-Web
-[2026-02-11 08:45:14,384]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-11 08:45:14,468]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-11 08:45:18,507]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
-
-[2026-02-11 08:45:19,558]  INFO {base.py:214} Scheduler started
-[2026-02-11 08:45:19,560]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-11 08:45:19,565]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-11 08:45:19,585]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-11 08:45:19,588]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-11 08:45:19 UTC], next run at: 2026-02-11 08:45:19 UTC)" (scheduled at 2026-02-11 08:45:19.585346+00:00)
-[2026-02-11 08:45:19,632]  INFO {base.py:728} Removed job 2260e00446da4d7e8d57bc5d1b3d5d70
-[2026-02-11 08:45:19,649]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-11 08:45:19 UTC], next run at: 2026-02-11 08:45:19 UTC)" executed successfully
-[2026-02-11 08:45:23,252]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-12 02:17:49,284]  INFO {server.py:331} webserver stop (restart=False)
-[2026-02-12 02:17:49,326]  INFO {base.py:245} Scheduler has been shut down
-[2026-02-12 02:17:49,350]  INFO {server.py:310} Performing shutdown of Calibre-Web
-[2026-02-12 02:18:11,981]  WARN {config_sql.py:365} Log path  not valid, falling back to default
-[2026-02-12 02:18:12,050]  INFO {__init__.py:184} Starting Calibre Web...
-[2026-02-12 02:18:17,497]  WARN {warnings.py:110} /lsiopy/lib/python3.12/site-packages/flask_limiter/extension.py:324: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
-
-[2026-02-12 02:18:18,856]  INFO {base.py:214} Scheduler started
-[2026-02-12 02:18:18,866]  INFO {base.py:1090} Added job "delete temp" to job store "default"
-[2026-02-12 02:18:18,873]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
-[2026-02-12 02:18:18,876]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
-[2026-02-12 02:18:19,041]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-02-12 02:18:18 UTC], next run at: 2026-02-12 02:18:18 UTC)" (scheduled at 2026-02-12 02:18:18.876190+00:00)
-[2026-02-12 02:18:19,041]  INFO {base.py:728} Removed job dd08b179dc884306a7e9c5508a68adfb
-[2026-02-12 02:18:19,063]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-02-12 02:18:18 UTC], next run at: 2026-02-12 02:18:18 UTC)" executed successfully
-[2026-02-12 02:18:26,522]  INFO {server.py:218} Starting Gevent server on [::]:8083
-[2026-02-12 04:00:00,021]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-13 04:00:00 UTC)" (scheduled at 2026-02-12 04:00:00+00:00)
-[2026-02-12 04:00:00,069]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-13 04:00:00 UTC)" executed successfully
-[2026-02-12 04:10:00,001]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-13 04:10:00 UTC)" (scheduled at 2026-02-12 04:10:00+00:00)
-[2026-02-12 04:10:00,167]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-13 04:10:00 UTC)" executed successfully
-[2026-02-13 04:00:00,010]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-14 04:00:00 UTC)" (scheduled at 2026-02-13 04:00:00+00:00)
-[2026-02-13 04:00:00,029]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-02-14 04:00:00 UTC)" executed successfully
-[2026-02-13 04:10:00,018]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-14 04:10:00 UTC)" (scheduled at 2026-02-13 04:10:00+00:00)
-[2026-02-13 04:10:00,024]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-02-14 04:10:00 UTC)" executed successfully
+[2026-04-05 15:47:12,780]  INFO {base.py:214} Scheduler started
+[2026-04-05 15:47:12,781]  INFO {base.py:1090} Added job "delete temp" to job store "default"
+[2026-04-05 15:47:12,781]  INFO {base.py:1090} Added job "end scheduled task" to job store "default"
+[2026-04-05 15:47:12,782]  INFO {base.py:1090} Added job "immediately delete temp" to job store "default"
+[2026-04-05 15:47:12,784]  INFO {base.py:129} Running job "immediately delete temp (trigger: date[2026-04-05 15:47:12 UTC], next run at: 2026-04-05 15:47:12 UTC)" (scheduled at 2026-04-05 15:47:12.782273+00:00)
+[2026-04-05 15:47:12,784]  INFO {base.py:728} Removed job 1f18afe8079b4747afed4eb64c124fcc
+[2026-04-05 15:47:12,888]  INFO {base.py:156} Job "immediately delete temp (trigger: date[2026-04-05 15:47:12 UTC], next run at: 2026-04-05 15:47:12 UTC)" executed successfully
+[2026-04-05 15:47:14,216]  INFO {server.py:218} Starting Gevent server on [::]:8083
+[2026-04-06 04:00:00,009]  INFO {base.py:129} Running job "delete temp (trigger: cron[hour='4'], next run at: 2026-04-07 04:00:00 UTC)" (scheduled at 2026-04-06 04:00:00+00:00)
+[2026-04-06 04:00:00,026]  INFO {base.py:156} Job "delete temp (trigger: cron[hour='4'], next run at: 2026-04-07 04:00:00 UTC)" executed successfully
+[2026-04-06 04:10:00,002]  INFO {base.py:129} Running job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-04-07 04:10:00 UTC)" (scheduled at 2026-04-06 04:10:00+00:00)
+[2026-04-06 04:10:00,008]  INFO {base.py:156} Job "end scheduled task (trigger: cron[hour='4', minute='10'], next run at: 2026-04-07 04:10:00 UTC)" executed successfully

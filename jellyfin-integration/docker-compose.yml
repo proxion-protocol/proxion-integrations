@@ -7,15 +7,17 @@ services:
     ports:
       - "8096:8096"
     networks:
-      - proxion-sso
+      - proxion-network
     volumes:
       - ./config:/config
       - ./cache:/cache
-      - ../../stash/I_Video:/media:ro
+      - ${MEDIA_MOVIES}:/media/movies:ro
+      - ${MEDIA_SHOWS}:/media/shows:ro
+      - I:/video/MUSIC_VIDEOS:/media/music_videos:ro
     restart: 'unless-stopped'
 
 networks:
-  proxion-sso:
+  proxion-network:
     external: true
     # Optional: for hardware acceleration
     # devices:

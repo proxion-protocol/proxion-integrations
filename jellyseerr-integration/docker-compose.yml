@@ -5,102 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
-    build:
-      context: .
-      dockerfile: Dockerfile.hardened
     container_name: jellyseerr
     restart: unless-stopped
     environment:
       - TZ=UTC
     volumes:
-      - P:/media/requests-jellyfin/config:/app/config
+      - ${STASH_ROOT}/media/jellyseerr-config:/app/config
     ports:
       - "5056:5055"
 networks:

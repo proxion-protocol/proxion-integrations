@@ -14,4 +14,11 @@ services:
     restart: unless-stopped
     volumes:
       - "./data:/data"
-      - "../../stash/I_Music:/music:ro"
+      - "${MEDIA_MUSIC}:/music:ro"
+    networks:
+      - default
+
+networks:
+  default:
+    name: proxion-network
+    external: true

@@ -8,10 +8,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=UTC
+      - TZ=UTC
     volumes:
-      - P:/media/sonarr-config:/config
-      - P:/media/tv:/tv
-      - P:/downloads/data:/downloads
+      - ${STASH_ROOT}/media/sonarr-config:/config
+      - ${MEDIA_SHOWS}:/tv
+      - ${LOCAL_DOWNLOADS}:/downloads
+      - ${SONARR_STAGING}:/downloads/sonarr
     ports:
       - "8989:8989"
 networks:

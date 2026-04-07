@@ -17,6 +17,23 @@ services:
       - "5443:5443/tcp"
       - "5443:5443/udp"
       - "127.0.0.1:3055:3000/tcp" # Setup/UI
+    healthcheck:
+      # Test DNS resolution through AdGuardHome from inside the container.
+      # Docker will auto-restart the container if this fails 3 times in a row.
+      test: ["CMD", "nslookup", "google.com", "127.0.0.1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"  # DNS server - never auto-update
     volumes:
-      - ../../proxion-core/storage/network/adguard/work:/opt/adguardhome/work
-      - ../../proxion-core/storage/network/adguard/conf:/opt/adguardhome/conf
+      - ${CORE_STORAGE}/network/adguard/work:/opt/adguardhome/work
+      - ${CORE_STORAGE}/network/adguard/conf:/opt/adguardhome/conf
+    networks:
+      - default
+      - proxion-network
+
+networks:
+  proxion-network:
+    external: true

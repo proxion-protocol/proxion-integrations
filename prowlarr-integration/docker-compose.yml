@@ -8,8 +8,14 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=UTC
+      - HTTP_PROXY=socks5h://${BRIDGE_IP}:1080
+      - HTTPS_PROXY=socks5h://${BRIDGE_IP}:1080
+      - ALL_PROXY=socks5h://${BRIDGE_IP}:1080
+      - NO_PROXY=localhost,127.0.0.1,::1,${BRIDGE_IP},prowlarr,radarr,sonarr,lidarr,transmission
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
-      - P:/media/indexers/config:/config
+      - ${STASH_ROOT}/media/indexers/config:/config
     ports:
       - "9696:9696"
 networks:

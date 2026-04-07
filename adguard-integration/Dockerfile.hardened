@@ -1,5 +1,5 @@
 # Stage 1: Official Upstream
-FROM adguard/adguardhome:latest AS upstream
+FROM adguard/adguardhome:v0.107.71 AS upstream
 
 # Stage 2: Hardened Forge (Alpine Edge for 0-CVE baseline)
 FROM alpine:edge

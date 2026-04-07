@@ -1,5 +1,0 @@
-FROM ghcr.io/advplyr/audiobookshelf:latest
-
-# Auto-remediation by Deep Forge
-# Forge V3: Targeted OS Package Upgrades (Alpine)
-RUN (command -v apk >/dev/null && apk add --upgrade libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libcrypto3 libexpat libpng libpng libsodium libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3) || true

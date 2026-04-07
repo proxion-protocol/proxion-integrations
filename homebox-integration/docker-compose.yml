@@ -7,7 +7,7 @@ services:
     ports:
       - "3100:7745"
     volumes:
-      - P:/home/inventory/data:/data
+      - ${STASH_ROOT}/home/inventory/data:/data
 networks:
   default:
     name: proxion-network

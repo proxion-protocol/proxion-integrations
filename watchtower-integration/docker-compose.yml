@@ -10,6 +10,7 @@ services:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_POLL_INTERVAL=3600
       - DOCKER_API_VERSION=1.44
+      - ALL_PROXY=socks5h://${BRIDGE_IP}:1080
 networks:
   default:
     name: proxion-network

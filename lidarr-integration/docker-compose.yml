@@ -1,16 +1,21 @@
 services:
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
+    image: lscr.io/linuxserver/lidarr:nightly
     container_name: lidarr
     restart: unless-stopped
     environment:
       - PUID=1001
       - PGID=1001
       - TZ=UTC
+      - ALL_PROXY=socks5h://${BRIDGE_IP}:1080
+      - HTTP_PROXY=socks5h://${BRIDGE_IP}:1080
+      - HTTPS_PROXY=socks5h://${BRIDGE_IP}:1080
+      - NO_PROXY=localhost,127.0.0.1,::1,${BRIDGE_IP},prowlarr,radarr,sonarr,transmission
     volumes:
-      - ../../stash/media/lidarr-config:/config
-      - ../../stash/I_Music:/music
-      - ../../stash/downloads/data:/downloads
+      - ${STASH_ROOT}/media/lidarr-config:/config
+      - ${MEDIA_MUSIC}:/music
+      - ${LOCAL_DOWNLOADS}:/downloads
+      - ${LOCAL_DOWNLOADS}/lidarr:/downloads/lidarr
     ports:
       - "8686:8686"
 networks:

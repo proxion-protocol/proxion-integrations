@@ -9,8 +9,8 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - C:/Users/hobo/Desktop/Proxion/proxion-core/storage/system/syncthing/config:/config
-      - C:/Users/hobo/Desktop/Proxion/stash/sync:/data
+      - ${CORE_STORAGE}/system/syncthing/config:/config
+      - ${STASH_ROOT}/sync:/data
     ports:
       - "127.0.0.1:8384:8384"
       - "22000:22000/tcp"

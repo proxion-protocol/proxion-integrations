@@ -12,15 +12,15 @@ services:
       - webUIPort=8265
       - internalNode=true
     volumes:
-      - ../../stash/media/tdarr-config/server:/app/server
-      - ../../stash/media/tdarr-config/configs:/app/configs
-      - ../../stash/media/tdarr-config/logs:/app/logs
-      - ../../stash/media/movies:/media/movies
-      - ../../stash/media/tv:/media/tv
-      - ../../stash/media/tdarr-cache:/temp
-      - ../../stash/I_Music:/media/music
-      - ../../stash/I_Video:/media/video
-      - ../../stash/I_Ingest:/media/ingest
+      - ${STASH_ROOT}/media/tdarr-config/server:/app/server
+      - ${STASH_ROOT}/media/tdarr-config/configs:/app/configs
+      - ${STASH_ROOT}/media/tdarr-config/logs:/app/logs
+      - ${MEDIA_MOVIES}:/media/movies
+      - ${STASH_ROOT}/media/tv:/media/tv
+      - ${STASH_ROOT}/media/tdarr-cache:/temp
+      - ${MEDIA_MUSIC}:/media/music
+      - ${MEDIA_MOVIES}:/media/video
+      - ${STASH_ROOT}/I_Ingest:/media/ingest
     ports:
       - "8265:8265"
       - "8266:8266"

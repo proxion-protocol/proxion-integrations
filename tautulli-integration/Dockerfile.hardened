@@ -1,8 +1,0 @@
-FROM ghcr.io/tautulli/tautulli:latest
-
-# Auto-remediation by Deep Forge
-# Forge V3: Targeted OS Package Upgrades (Debian/Ubuntu)
-RUN (command -v apt-get >/dev/null && apt-get update && apt-get install --only-upgrade gpgv libc-bin libc-bin libc6 libc6 libcap2 libgnutls30 libgnutls30 libgnutls30 libgnutls30 libgssapi-krb5-2 libgssapi-krb5-2 libgssapi-krb5-2 libk5crypto3 libk5crypto3 libk5crypto3 libkrb5-3 libkrb5-3 libkrb5-3 libkrb5support0 libkrb5support0 libkrb5support0 liblzma5 libpam-modules libpam-modules libpam-modules-bin libpam-modules-bin libpam-runtime libpam-runtime libpam0g libpam0g libsqlite3-0 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libssl3 libsystemd0 libudev1 login openssl openssl openssl openssl openssl openssl openssl openssl openssl openssl passwd perl-base perl-base perl-base -y && rm -rf /var/lib/apt/lists/*) || true
-# Forge V3: Targeted Python Package Upgrades
-RUN pip install --no-cache-dir cryptography==46.0.5 pip==25.3 setuptools==70.0.0 setuptools==78.1.1 wheel==0.46.2 || true
-RUN (pip freeze > /app/requirements.lock 2>/dev/null) || true

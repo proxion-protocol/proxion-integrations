@@ -5,9 +5,10 @@ services:
     image: searxng/searxng:latest
     restart: unless-stopped
     volumes:
-      - P:/web/search/config:/etc/searxng
+      - ${STASH_ROOT}/web/search/config:/etc/searxng
     environment:
       - SEARXNG_BASE_URL=http://localhost:8083
+      - ALL_PROXY=socks5h://${BRIDGE_IP}:1080
     networks:
       - proxion-network
 
