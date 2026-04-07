@@ -28,3 +28,11 @@ docker-compose.override.yml.disabled
 vpn.env
 *.key
 **/config/calibre-web.log*
+# Beets runtime
+**/config/musiclibrary.db
+**/config/state.pickle
+**/config/.cache/
+**/config/beets.log
+# Machine-specific
+**/config/machine-id
+**/config/xdg/state/
